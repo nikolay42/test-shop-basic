@@ -96,12 +96,12 @@ use yii\helpers\Html;
                             <img src="/images/product-details/rating.png" alt="" />
                             <span>
 									<span>US $<?= $product->price ?></span>
-									<label>Quantity:</label>
-									<input type="text" value="1" />
-									<button type="button" class="btn btn-fefault cart">
+									<label>Количество:</label>
+									<input type="text" value="1" id="qty"/>
+									<a href="#" data-id="<?= $product->id ?>" class="btn btn-fefault add-to-cart cart">
 										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button>
+										В корзину
+									</a>
 								</span>
                             <p><b>Availability:</b> In Stock</p>
                             <p><b>Condition:</b> New</p>
