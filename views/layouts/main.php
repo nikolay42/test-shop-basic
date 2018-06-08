@@ -10,6 +10,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\assets\ltAppAsset;
+use app\models\FeedbackForm;
 
 AppAsset::register($this);
 ltAppAsset::register($this);
@@ -44,22 +45,21 @@ ltAppAsset::register($this);
     <div class="header_top"><!--header_top-->
         <div class="container">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <div class="contactinfo">
                         <ul class="nav nav-pills">
-                            <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i> +375 29 505-97-06 (МТС)</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i> +375 29 665-97-06 (Velcom)</a></li>
+                            <li><a href="#"><i class="fa fa-skype"></i> infoGuitarBy</a></li>
+                            <li><a href="#" id="feedback" onclick="return getFeedback()"><i class="fa fa-comments"></i> <font id="feedback-text">Обратная связь</font></a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="social-icons pull-right">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <div class="col-sm-5">
+                    <div class="contactinfo">
+                        <ul class="nav nav-pills right-up">
+<!--                            <li><a href="#"><i class="fa"></i> <font class="right-up">Регистрация</font></a></li>-->
+                            <li><a href="#" onclick="return getCart()"><i class="fa fa-shopping-cart"></i> <font class="right-up1">Моя корзина</font> (<?php echo $_SESSION['cart.qty'] ?>)</a></li>
                         </ul>
                     </div>
                 </div>
@@ -69,12 +69,12 @@ ltAppAsset::register($this);
 
     <div class="header-middle"><!--header-middle-->
         <div class="container">
-            <div class="row">
-                <div class="col-sm-4">
+            <div class="row low-bottom">
+                <div class="col-sm-2">
                     <div class="logo pull-left">
                         <a href="<?= \yii\helpers\Url::home() ?>"><?= Html::img('@web/images/home/logo.png', ['alt' => 'Guitar.by']) ?></a>
                     </div>
-                    <div class="btn-group pull-right">
+<!--                    <div class="btn-group pull-right">
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
                                 USA
@@ -96,29 +96,16 @@ ltAppAsset::register($this);
                                 <li><a href="#">Pound</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
-                <div class="col-sm-8">
-                    <div class="shop-menu pull-right">
-                        <ul class="nav navbar-nav">
-                            <?php if(!Yii::$app->user->isGuest): ?>
-                                <li><a href="<?= \yii\helpers\Url::to(['/site/logout'])?>"><i class="fa fa-user"></i> <?= Yii::$app->user->identity['username']?> (Выход)</a></li>
-                            <?php endif;?>
-                            <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="#" onclick="return getCart()"><i class="fa fa-shopping-cart"></i> Корзина</a></li>
-                            <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!--/header-middle-->
 
-    <div class="header-bottom"><!--header-bottom-->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-9">
+
+
+
+
+
+
+                <div class="col-sm-7">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
@@ -129,38 +116,64 @@ ltAppAsset::register($this);
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="index.html" class="active">Home</a></li>
-                            <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li><a href="shop.html">Products</a></li>
-                                    <li><a href="product-details.html">Product Details</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                </ul>
+                            <li><a href="index.html" class="my-menu">О НАС</a></li>
+                            <li><a href="#" class="active my-menu">КАТАЛОГ</a>
+                                <!--                            <li class="dropdown"><a href="#">КАТАЛОГ<i class="fa fa-angle-down"></i></a>-->
+                                <!--                                <ul role="menu" class="sub-menu">
+                                                                    <li><a href="shop.html">Products</a></li>
+                                                                    <li><a href="product-details.html">Product Details</a></li>
+                                                                    <li><a href="checkout.html">Checkout</a></li>
+                                                                    <li><a href="cart.html">Cart</a></li>
+                                                                    <li><a href="login.html">Login</a></li>
+                                                                </ul>-->
                             </li>
-                            <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li><a href="blog.html">Blog List</a></li>
-                                    <li><a href="blog-single.html">Blog Single</a></li>
-                                </ul>
+                            <li><a href="#" class="my-menu">НОВОСТИ И АКЦИИ</a>
+                                <!--                                <ul role="menu" class="sub-menu">
+                                                                    <li><a href="blog.html">Blog List</a></li>
+                                                                    <li><a href="blog-single.html">Blog Single</a></li>
+                                                                </ul>-->
                             </li>
-                            <li><a href="404.html">404</a></li>
-                            <li><a href="contact-us.html">Contact</a></li>
+                            <li><a href="404.html" class="my-menu">МАГАЗИНЫ</a></li>
+                            <li><a href="contact-us.html" class="my-menu">ОПЛАТА И ДОСТАВКА</a></li>
+                            <li><a href="contact-us.html" class="my-menu">ГАРАНТИИ</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
                         <form method="get" action="<?= \yii\helpers\Url::to(['category/search']) ?>">
-                        <input type="text" placeholder="Поиск" name="q"/>
+                            <input type="text" placeholder="Поиск по каталогу" name="q"/>
                         </form>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+<!--                <div class="col-sm-8">
+                    <div class="shop-menu pull-right">
+                        <ul class="nav navbar-nav">
+                            <?php /*if(!Yii::$app->user->isGuest): */?>
+                                <li><a href="<?/*= \yii\helpers\Url::to(['/site/logout'])*/?>"><i class="fa fa-user"></i> <?/*= Yii::$app->user->identity['username']*/?> (Выход)</a></li>
+                            <?php /*endif;*/?>
+<!--                            <li><a href="#"><i class="fa fa-star"></i> Список желаемого</a></li>-->
+<!--                            <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>-->
+<!--                            <li><a href="#" onclick="return getCart()"><i class="fa fa-shopping-cart"></i> Корзина</a></li>-->
+<!--                            <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>-->
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div><!--/header-bottom-->
-</header><!--/header-->
+    </div><!--/header-middle-->
+
+
 
 <?= $content; ?>
 
@@ -334,6 +347,18 @@ ltAppAsset::register($this);
 
 \yii\bootstrap\Modal::end();
 ?>
+
+    <?php
+    \yii\bootstrap\Modal::begin([
+        'header' => '<h2>Обратная связь</h2>',
+        'id' => 'feedback-modal',
+        /*'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
+                     <a href="' . \yii\helpers\Url::to(['cart/view']) . '" type="button" class="btn btn-success">Оформить заказ</a>
+                     <button type="button" class="btn btn-danger" onclick="clearCart()">Очистить корзину</button>'*/
+    ]);
+
+    \yii\bootstrap\Modal::end();
+    ?>
 
 <!--<script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>

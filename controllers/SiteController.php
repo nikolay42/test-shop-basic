@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\FeedbackForm;
 
 class SiteController extends Controller
 {
@@ -124,5 +125,34 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionFeedback()
+    {
+        $this->layout = false;
+
+        $model = new FeedbackForm();
+
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->validate()){
+                return "valid";
+            }
+            else {
+                //echo "<script>getFeedback();</script>";
+                return $this->render('feedback', ['model' => $model]);
+                //return "not valid";
+            }
+            //return "post";
+        }
+        else {
+            return $this->render('feedback', ['model' => $model]);
+        }
+    }
+
+    public function actionFeedbackagain()
+    {
+        $this->layout = false;
+
+        return $this->render('feedbackagain');
     }
 }

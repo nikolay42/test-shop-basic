@@ -11,6 +11,49 @@
     $('#cart').modal();
  }
 
+function showFeedback(feedback){
+    $('#feedback-modal .modal-body').html(feedback);
+    $('#feedback-modal').modal();
+}
+
+/*$(document).ready(function(){
+    $("feedback").live('click', function(){
+        $('#feedback-modal').modal();
+        // Здесь функция открытия диалогового окна можно использовать CJuiDialog
+        return false; // Что бы переход по ссылке не осуществился.
+        //Это нужно для того чтобы если у пользователя с отключенным JS перешло на нужную страницу.
+    });
+});*/
+
+function getFeedback(){
+    $.ajax({
+        url: '/site/feedback',
+        type: 'POST',
+        success: function(res){
+            if(!res) alert('Ошибка!');
+            showFeedback(res);
+        },
+        error: function(){
+            alert('Error!');
+        }
+    });
+    return false;
+}
+
+function getFeedbackagain(){
+    $.ajax({
+        url: '/site/feedbackagain',
+        type: 'POST',
+        success: function(res){
+            if(!res) alert('Ошибка!');
+            showCart(res);
+        },
+        error: function(){
+            alert('Error!');
+        }
+    });
+}
+
 function getCart(){
     $.ajax({
         url: '/cart/show',

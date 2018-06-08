@@ -6,6 +6,43 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,600,700);
 @import url(http://fonts.googleapis.com/css?family=Abel);
 
+/*Мой код*/
+/*.fa-phone{
+   color: blue;
+ }
+
+.fa-skype{
+  color: blue;
+}
+
+.fa-comments{
+  color: blue;
+}*/
+
+
+#feedback-text {
+  border-bottom: 1px dashed;
+  /*text-decoration:underline;*/
+}
+
+#feedback-text:hover {
+  border-bottom: none;
+}
+
+.right-up1 {
+  text-decoration:underline;
+}
+
+.right-up1:hover {
+  text-decoration: none;
+}
+
+.right-up {
+  display: flex;
+  justify-content: flex-end;
+}
+/*/Мой код*/
+
 body {
   font-family: 'Roboto', sans-serif;
   background:;
@@ -241,8 +278,8 @@ a#scrollUp i{
 .mainmenu ul li a {
   color: #696763;
   font-family: 'Roboto', sans-serif;
-  font-size: 17px;
-  font-weight: 300;
+  font-size: 12px;
+  font-weight: 500;
   padding: 0;
   padding-bottom: 10px;
 }
@@ -262,10 +299,10 @@ a#scrollUp i{
   height: 35px;
   outline: medium none;
   padding-left: 10px;
-  width: 155px;
+  width: 230px;
   background-image: url(../images/home/searchicon.png);
   background-repeat: no-repeat;
-  background-position: 130px;
+  background-position: 205px;
 }
 
 
@@ -2535,4 +2572,26 @@ h2.title {
   color: #FE980F;
 }
 
+.low-bottom{
+  padding-bottom: 0px !important;
+  display: flex;
+  position: relative;
+  align-items: flex-end;
+}
+.low-bottom.row>div:first-child{
+  width: 130px;
+}
 
+.low-bottom.row>div:last-child{
+  position: absolute;
+  right: 0px;
+}
+
+
+.logo{
+  padding-bottom: 10px;
+  width: 130px;
+}
+
+/*Мой код*/
+/*#feedback .modal-dialog { width: 800px }*/
